@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <table class="table mt-5 border p-5 shadow rounded">
+            <thead>
+                <tr>
+                    <th scope="col" class="table-list">#</th>
+                    <th scope="col" class="table-list">Candidate Name</th>
+                    <th scope="col" class="table-list">Total Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="candidates.length > 0">
+                    <tr *ngFor="let candidate of candidates; let i=index">
+                        <td class="fst-italic" [ngClass]="{'highlight': candidate === getMaxVotedCandidate()}">{{ i + 1 }}</td>
+                        <td class="fst-italic" [ngClass]="{'highlight': candidate === getMaxVotedCandidate()}">{{
+                            candidate.firstName }} {{ candidate.lastName }}</td>
+                        <td class="fst-italic" [ngClass]="{'highlight': candidate === getMaxVotedCandidate()}">{{
+                            candidate.votes }}
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+        <div class="content-text" *ngIf="candidates.length == 0">
+            <p>No data in Candidate list</p>
+        </div>
+    </div>
+</div>

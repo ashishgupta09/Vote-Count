@@ -1,0 +1,66 @@
+
+
+<div class="countdown-container" *ngIf="showCounter" >
+    <div class="countdown" [style.background-color]="backgroundColor">
+      <div class="countdown-progress" [style.transform]="'rotate(' + rotation + 'deg)'"></div>
+      <div class="countdown-text">{{ countdownValue }}</div>
+    </div>
+</div>
+
+<div class="container" *ngIf="!showCounter">
+    <div class="row">
+        <table class="table mt-5 border p-5 shadow rounded">
+            <thead>
+                <tr>
+                    <th scope="col" class="table-list">#</th>
+                    <th scope="col" class="table-list">Candidate Name</th>
+                    <th scope="col" class="table-list">Slogan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="candidates.length>0">
+                <tr *ngFor="let candidate of candidates">
+                    <td scope="row">
+                        <input class="form-check-input" 
+                        type="radio"
+                        name="flexRadioDefault" 
+                        id="flexRadioDefault1"
+                        [(ngModel)]="selectedCandidate"
+                        [value]="candidate"
+                        >
+                    </td>
+                    <td>{{candidate.firstName}} {{candidate.lastName}}</td>
+                    <td>{{candidate.slogan}}</td>
+                </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+    <div class="content-text" *ngIf="candidates.length == 0">
+        <p>No data in Candidate list</p>
+    </div>
+
+
+    <div class="conatiner">
+        <div class="row">
+            <div class="col-4 border shadow p-3 rounded" [formGroup]="votingFrom">
+                <div>
+                    <label class="mt-2 fw-bolder">Email Address For Voting</label>
+                    <input type="email" formControlName="emailAddress" placeholder="Enter your email" class="form-control mt-3">
+                    <div>
+                        <small *ngIf="votingFrom.get('emailAddress')?.hasError('required') && votingFrom.get('emailAddress')?.touched">
+                            Email Address is required
+                        </small>
+                        <small *ngIf="votingFrom.get('emailAddress')?.hasError('email') && votingFrom.get('emailAddress')?.touched">
+                            Email Address is invalid
+                        </small>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" class="form-control mt-4 btn btn-primary" (click)="submit()"
+                     [disabled]="!this.votingFrom.valid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+.table-list{
+    font-weight: 600 !important;
+    color: red !important;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  .countdown {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #ccc;
+    transition: background-color 5s linear; /* Transition background color over 5 seconds */
+  }
+  
+  .countdown-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    clip: rect(0, 75px, 150px, 0);
+    background-color: #ff5733;
+    transform-origin: center;
+  }
+  
+  .countdown-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .content-text{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    font-weight: 800;
+    color: red ;
+    font-size: 25px;
+}
+
+small{
+  color: red;
+  font-weight: bold;
+}

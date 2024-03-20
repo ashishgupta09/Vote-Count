@@ -1,0 +1,90 @@
+<div class="container">
+    <form class="row w-full" [formGroup]="registerCandidate">
+        <h3 class="text-center mt-3 text-success text-uppercase">Candidate Registration Page</h3>
+        <div class="mt-3 p-5 border shadow">
+            <div class="">
+                <label class="mt-2 fw-bolder">First Name</label>
+                <input type="text" class="form-control mt-3" formControlName="firstName" placeholder="Enter First Name">
+                <div *ngIf="registerCandidate.get('firstName')?.invalid && registerCandidate.get('firstName')?.touched">
+                    <small *ngIf="registerCandidate.get('firstName')?.errors?.['required']">
+                        First Name is Required
+                    </small>
+                    <small *ngIf="registerCandidate.get('firstName')?.errors?.['minlength']">
+                        First Name should be at least 2 characters.
+                    </small>
+                    <small *ngIf="registerCandidate.get('firstName')?.errors?.['maxLength']">
+                        First Name should be at least 25 characters.
+                    </small>
+                </div>
+            </div>
+
+            <div class="">
+                <label class="mt-2 fw-bolder">Last Name</label>
+                <input type="text" class="form-control mt-3" formControlName="lastName" placeholder="Enter Last Name">
+
+                <div *ngIf="registerCandidate.get('lastName')?.invalid && registerCandidate.get('lastName')?.touched ">
+                    <small *ngIf="registerCandidate.get('lastName')?.errors?.['required']">
+                        Last Name is Required
+                    </small>
+                    <small *ngIf="registerCandidate.get('lastName')?.errors?.['minlength']">
+                        Last Name should be at least 2 characters.
+                    </small>
+                    <small *ngIf="registerCandidate.get('lastName')?.errors?.['maxLength']">
+                        Last Name should be at least 25 characters.
+                    </small>
+                </div>
+            </div>
+
+            <div class="">
+                <label class="mt-2 fw-bolder">Email Address</label>
+                <input type="email" class="form-control mt-3" formControlName="emailAddress"
+                    placeholder="Enter Email Address">
+                <div>
+                    <small
+                        *ngIf="registerCandidate.get('emailAddress')?.hasError('required') && registerCandidate.get('emailAddress')?.touched">
+                        Email Address is required
+                    </small>
+                    <small
+                        *ngIf="registerCandidate.get('emailAddress')?.hasError('email') && registerCandidate.get('emailAddress')?.touched">
+                        Email Address is invalid
+                    </small>
+                </div>
+            </div>
+
+            <div class="">
+                <label class="mt-2 fw-bolder">Phone Number</label>
+                <input type="number" maxlength="10" class="form-control mt-3" formControlName="phoneNumber"
+                    placeholder="Enter Phone Number">
+                <div
+                    *ngIf="registerCandidate.get('phoneNumber')?.dirty || registerCandidate.get('phoneNumber')?.touched">
+                    <small *ngIf="registerCandidate.get('phoneNumber')?.hasError('required')">Phone Number is required
+                    </small>
+                    <small *ngIf="registerCandidate.get('phoneNumber')?.hasError('pattern')">Phone Number must be 10
+                        digits
+                    </small>
+                </div>
+            </div>
+
+            <div class="">
+                <label class="mt-2 fw-bolder">Slogan</label>
+                <textarea name="" id="" class="form-control mt-3 border rounded" formControlName="slogan"
+                    aria-label="With textarea" cols="61" rows="5"></textarea>
+                <div *ngIf="registerCandidate.get('slogan')?.invalid && registerCandidate.get('slogan')?.touched ">
+                    <small *ngIf="registerCandidate.get('slogan')?.errors?.['required']">
+                        Slogan is Required
+                    </small>
+                    <small *ngIf="registerCandidate.get('slogan')?.errors?.['minlength']">
+                        Slogan should be at least 10 characters.
+                    </small>
+                    <small *ngIf="registerCandidate.get('slogan')?.errors?.['maxLength']">
+                        Slogan should be at least 6000 characters.
+                    </small>
+                </div>
+            </div>
+
+            <input type="submit" class="form-control mt-4 btn btn-primary" (click)="onSubmit()"
+                [disabled]="!this.registerCandidate.valid">
+        </div>
+
+    </form>
+</div>
